@@ -208,13 +208,8 @@
 				}
 			}
 
-			if (totalQuestions == 11){
-				var quickDASHscore = ((totalScore / totalQuestions) - 1) * 25;
-				document.getElementById("result").innerHTML = "請勿關閉此頁面，並將以下資料展示給物理治療師。<br><br> Your QuickDASH score is: " + Math.round(quickDASHscore) + "/100";
-			} else {
-				document.getElementById("result").innerHTML = "你尚有" + (11 - totalQuestions)+ "條問題未回答";
-			}
-			
+            var quickDASHscore = totalScore;
+            document.getElementById("result").innerHTML = "請勿關閉此頁面，並將以下資料展示給物理治療師。<br> Your Harris Hip Score is: " + quickDASHscore ;
 				
 		}
 
@@ -222,13 +217,13 @@
 	</script>
 </head>
 <body>
-	<h1>Chinese version of Harris Hip Score 1</h1>
+	<h1>Chinese version of Harris Hip Score </h1>
 	<h2> 威爾斯親王醫院 物理治療部</h2>
 	<form>
 		<p>本問卷的目的，是了解你的髖關節如何影響你應付日常生活的能力。</p>
 
 		<p>請回答所有的問題，並在每題選擇一個是你認為最貼切地描述你現況的答案。</p>
-
+        <br>
 			<p><strong>問題1   疼痛程度評估</strong></p>
 			<input type="radio" name="section1" value="44" class="score"> 完全不感疼痛或可忽略
             <br>
@@ -244,65 +239,58 @@
             <input type="radio" name="section1" value="0" class="score"> 完全癱痪、殘廢，臥床於床上
 			<br><br><p><strong>問題2   跛行程度評估</strong></p>
 			<input type="radio" name="section2" value="11" class="score"> 完全不會
+            <br>
 			<input type="radio" name="section2" value="8" class="score"> 輕微跛行
+            <br>
 			<input type="radio" name="section2" value="5" class="score"> 中度跛行
+            <br>
 			<input type="radio" name="section2" value="0" class="score"> 嚴重跛行
 			<br><br><p><strong>問題3   輔助程度評估</strong></p>
-			<input type="radio" name="section3" value="1" class="score"> 完全不需要
-			<input type="radio" name="section3" value="2" class="score"> 長距離行走時才會使用1支手杖(sticks)
-			<input type="radio" name="section3" value="3" class="score"> 大部分時間都會使用1支手杖(sticks)
-			<input type="radio" name="section3" value="4" class="score"> 使用1支枴杖(one crutch, quadripod, sinlge EC, AC)
-			<input type="radio" name="section3" value="5" class="score"> 做不到
-			<br><br><p>4. 清潔背部:</p>
-			<input type="radio" name="section4" value="1" class="score"> 沒困難
-			<input type="radio" name="section4" value="2" class="score"> 輕微困難
-			<input type="radio" name="section4" value="3" class="score"> 中度困難
-			<input type="radio" name="section4" value="4" class="score"> 很大困難
-			<input type="radio" name="section4" value="5" class="score"> 做不到
-			<br><br><p>5. 用刀切食物:</p>
-			<input type="radio" name="section5" value="1" class="score"> 沒困難
-			<input type="radio" name="section5" value="2" class="score"> 輕微困難
-			<input type="radio" name="section5" value="3" class="score"> 中度困難
-			<input type="radio" name="section5" value="4" class="score"> 很大困難
-			<input type="radio" name="section5" value="5" class="score"> 做不到
-			<br><br><p>6. 手臂、肩膊及手部需要用力的康樂活動（如：打哥爾夫球、使用鎚子、打網球等）:</p>
-			<input type="radio" name="section6" value="1" class="score"> 沒困難
-			<input type="radio" name="section6" value="2" class="score"> 輕微困難
-			<input type="radio" name="section6" value="3" class="score"> 中度困難
-			<input type="radio" name="section6" value="4" class="score"> 很大困難
-			<input type="radio" name="section6" value="5" class="score"> 做不到
-			<br><br><p>7. 在過去的一星期，你的手臂、肩膊或手部疾患有否影響你與家人、朋友、
-				鄰居或其他團體的正常社交活動？:</p>
-			<input type="radio" name="section7" value="1" class="score"> 完全沒影響
-			<input type="radio" name="section7" value="2" class="score"> 輕微影響
-			<input type="radio" name="section7" value="3" class="score"> 中度影響
-			<input type="radio" name="section7" value="4" class="score"> 頗有影響
-			<input type="radio" name="section7" value="5" class="score"> 嚴重影響
-			<br><br><p>8. 在過去的一星期，你的手臂、肩膊或手部疾患有否限制了你的工作或其他日常起居活動？:</p>
-			<input type="radio" name="section8" value="1" class="score"> 完全沒限制
-			<input type="radio" name="section8" value="2" class="score"> 輕微限制
-			<input type="radio" name="section8" value="3" class="score"> 中度限制
-			<input type="radio" name="section8" value="4" class="score"> 頗有限制
-			<input type="radio" name="section8" value="5" class="score"> 做不到
-			<br><br><p>請在下列9-11項選擇適當的選項，以顯示不同病徵在上星期的嚴重程度。</p>
-			<p>9. 手臂、肩膊或手部痛楚:</p>
-			<input type="radio" name="section9" value="1" class="score"> 無
-			<input type="radio" name="section9" value="2" class="score"> 輕微
-			<input type="radio" name="section9" value="3" class="score"> 中度
-			<input type="radio" name="section9" value="4" class="score"> 嚴重
-			<input type="radio" name="section9" value="5" class="score"> 極為嚴重
-			<br><br><p>10. 手臂、肩膊或手部感到針刺:</p>
-			<input type="radio" name="section10" value="1" class="score"> 無
-			<input type="radio" name="section10" value="2" class="score"> 輕微
-			<input type="radio" name="section10" value="3" class="score"> 中度
-			<input type="radio" name="section10" value="4" class="score"> 嚴重
-			<input type="radio" name="section10" value="5" class="score"> 極為嚴重
-			<br><br><p>11. 在過去的一星期，你有否因為手臂、肩膊或手部痛楚而影響睡眠:</p>
-			<input type="radio" name="section11" value="1" class="score"> 沒影響
-			<input type="radio" name="section11" value="2" class="score"> 輕微影響
-			<input type="radio" name="section11" value="3" class="score"> 中度影響
-			<input type="radio" name="section11" value="4" class="score"> 很大影響
-			<br><input type="radio" name="section11" value="5" class="score"> 極大影響至不能入睡
+			<input type="radio" name="section3" value="11" class="score"> 完全不需要
+            <br>
+			<input type="radio" name="section3" value="7" class="score"> 長距離行走時才會使用1支手杖(sticks)
+            <br>
+			<input type="radio" name="section3" value="5" class="score"> 大部分時間都會使用1支手杖(sticks)
+            <br>
+			<input type="radio" name="section3" value="3" class="score"> 使用1支枴杖(one crutch, quadripod, sinlge EC, AC)
+            <br>
+			<input type="radio" name="section3" value="2" class="score"> 使用2支手杖(stick+quadripod)
+            <br>
+            <input type="radio" name="section3" value="0" class="score"> 使用2支拐杖或完全無法行走(2 crutches, frame, rollator)
+			<br><br><p><strong>問題4   行走距離評估</strong></p>
+			<input type="radio" name="section4" value="11" class="score"> 完全無限制
+            <br>
+			<input type="radio" name="section4" value="8" class="score"> ~6個街口(12.5 mins)
+            <br>
+			<input type="radio" name="section4" value="5" class="score"> 2或3個街口(4-6.25mins)
+            <br>
+			<input type="radio" name="section4" value="2" class="score"> 足不出戶
+            <br>
+			<input type="radio" name="section4" value="0" class="score"> 僅臥在床或椅上
+			<br><br><p><strong>問題5 就坐舒適程度</strong></p>
+			<input type="radio" name="section5" value="5" class="score"> 可舒適的坐在椅子上達1小時
+            <br>
+			<input type="radio" name="section5" value="3" class="score"> 在高腳椅上可坐30分鐘
+            <br>
+			<input type="radio" name="section5" value="0" class="score"> 完全無法坐上椅子上休息
+			<br><br><p><strong>問題6 可否搭乘交通工具</strong></p>
+			<input type="radio" name="section6" value="1" class="score"> 可自行搭乘
+            <br>
+			<input type="radio" name="section6" value="0" class="score"> 不可自行搭乘
+			<br><br><p><strong>問題7  上下樓梯功能評估</strong></p>
+			<input type="radio" name="section7" value="4" class="score"> 正常上下樓不需扶手幫助
+            <br>
+			<input type="radio" name="section7" value="2" class="score"> 正常上下樓需扶手幫助
+            <br>
+			<input type="radio" name="section7" value="1" class="score"> 需以其他方式輔助上下樓
+            <br>
+			<input type="radio" name="section7" value="0" class="score"> 完全無法上下樓
+			<br><br><p><strong>問題8 穿脫襪子及鞋子能力</strong></p>
+			<input type="radio" name="section8" value="4" class="score"> 輕鬆做到穿脫襪子及鞋子
+            <br>
+			<input type="radio" name="section8" value="2" class="score"> 困難執行穿脫襪子及鞋子
+            <br>
+			<input type="radio" name="section8" value="0" class="score"> 完全沒辦法做到
 			<br>
 		<br>
 		<br>
