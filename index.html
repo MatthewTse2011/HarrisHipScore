@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta http-equiv="Content-Language" content="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Harris Hip Score Calculator</title>
 	<style>
 		@font-face{
@@ -29,10 +31,10 @@
       	}
 
 		h1 {
-		text-align: center;
-		margin-top: 20px;
-		margin-bottom: 20px;
-		font-size: 40px;
+			text-align: center;
+			margin-top: 20px;
+			margin-bottom: 20px;
+			font-size: 45px;
 	
 		}
 
@@ -44,20 +46,20 @@
 		}
 
 		body {
-		margin: 0;
-		padding: 0;
+			margin: 0;
+			padding: 0;
 		}
 
 
 		form {
-		margin: 10px;
-		max-width: auto;
-		padding: 20px;
-		border: 1px solid #ccc;
-		border-radius: 5px;
-		font-size: 30px;
-		background-color: rgb(224, 233, 246);
-        line-height: 2;
+			margin: 10px;
+			max-width: auto;
+			padding: 20px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			font-size: 30px;
+			background-color: rgb(224, 233, 246);
+			line-height: 1.5;
 		}
 
 		input {
@@ -65,23 +67,23 @@
 		}
 
 		p {
-		margin-top: 10px;
-		margin-bottom: 10px;
+			margin-top: 10px;
+			margin-bottom: 10px;
 		}
 
 		input[type="radio"] {
-		margin-right: 10px;
-		transform: scale(1.5);
+			margin-right: 10px;
+			margin-left: 15px;
+			transform: scale(1.5);
 		}
 
 		input[type="radio"]:last-child {
-		margin-right: 0;
+			margin-right: 0;
 		}
 
 		button {
 			background-color: rgb(0, 145, 255);
 			color: white;
-
 			border: none;
 			border-radius: 25px;
 			cursor: pointer;
@@ -91,43 +93,161 @@
 		}
 
 		button[type="button"]:hover {
-		background-color: rgb(100, 182, 245);
+			background-color: rgb(100, 182, 245);
+		}
+
+		input[type="reset"] {
+			background-color: rgb(61, 120, 165);
+			color: white;
+			border: none;
+			border-radius: 25px;
+			cursor: pointer;
+			font-size: 30px;
+			display: block;
+			margin: 0 auto;
+			padding: 20px 33px;
+			margin-right: 0px;
+		}
+
+		input[type="reset"]:hover {
+			background-color: rgb(86, 146, 193);
+		}
+
+		.button-container {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-top: 16px;
 		}
 
 		.btn-primary {
 			/* padding: 23px 33px; */
 			padding: 20px 33px;
-			
+			margin-left: 40px;
 		}
 
         .increase-font-size-btn {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        padding: 9px 10px;
-		background-color: white;
-		color: black;
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			padding: 11px 12px;
+			background-color: white;
+			color: black;
+			border-radius: 20px;
         }
 
 		.decrease-font-size-btn{
 			position: absolute;
 			top: 10px;
-			right: 50px;
-			padding: 9px 10px;
+			right: 59px;
+			padding: 17px 17px;
 			background-color: white;
 			color: black;
+			border-radius: 20px;
+			font-size: 20px;
         }
-		
-		#result {
-		margin-top: 20px;
-		font-size: 30px;
-		font-weight: bold;
+
+		.button {
+			display: inline-block;
 		}
 
+		
+		#result {
+			margin-top: 20px;
+			font-size: 30px;
+			font-weight: bold;
+			text-align: center;
+		}
+
+		#popup {
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background-color: rgb(232, 232, 176);
+			border-radius: 15px;
+			border: 1px solid black;
+			padding: 20px;
+			display: none;
+			font-size: 30px;
+			text-align: center;
+			max-width: 100%;
+			width: 70%;
+ 		 	max-height: 80%;
+  			overflow: auto;
+		}
+
+		.popup-content {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.popup-message {
+			margin-bottom: 10px;
+			font-weight: bold;
+		}
+
+		.popup-button {
+			margin-top: 10px;
+			padding: 9px 15px;
+			border-radius: 13px;
+		}
+
+		
 
 
 	</style>
 	<script type="text/javascript">
+		function showPopup(message) {
+			var popup = document.getElementById("popup");
+			var messageElement = popup.querySelector(".popup-message");
+			messageElement.innerHTML = message;
+			popup.style.display = "block";
+			return popup;
+		}
+
+		function hidePopup(popup) {
+			popup.style.display = "none";
+		}
+
+
+		function calculateQuickDASH(event) {
+			event.preventDefault(); // Prevent form submission
+			
+			var values = document.getElementsByClassName("score");
+			var totalScore = 0;
+			var totalQuestions = 0;
+			for(var i = 0; i < values.length; i++) {
+				if(values[i].checked) {
+					totalScore += parseFloat(values[i].value);
+					totalQuestions++;
+				}
+			}
+
+			if (totalQuestions >= 8){
+				var quickDASHscore = totalScore;
+				document.getElementById("result").innerHTML = "非常感謝您完成了這份調查中所有的問題<br><br>請勿關閉此頁面，並將以下資料展示給物理治療師。<br><br> Your Harris Hip score is: " + quickDASHscore;
+				var popup = showPopup("非常感謝您完成了這份調查中所有的問題<br><br>請勿關閉此頁面，並將以下資料展示給物理治療師。<br><br> Your Total Score is: " + quickDASHscore);
+			} else {
+				document.getElementById("result").innerHTML = "你尚有" + (8 - totalQuestions)+ "條問題未回答<br>";
+				var popup = showPopup("你尚有" + (8 - totalQuestions)+ "條問題未回答。<br>請返回並繼續作答。");
+			}
+			
+			
+			var okButton = popup.querySelector(".popup-button");
+			okButton.addEventListener("click", function() {
+				hidePopup(popup);
+			});
+
+			
+		}
+
+		function resetContent() {
+    		document.getElementById("result").innerHTML = "";
+		}
+		
+		/*
 		function calculateQuickDASH() {
 			var values = document.getElementsByClassName("score");
 			var totalScore = 0;
@@ -143,8 +263,7 @@
             document.getElementById("result").innerHTML = "請勿關閉此頁面，並將以下資料展示給物理治療師。<br> Your Harris Hip Score is: " + quickDASHscore ;
 				
 		}
-
-
+		*/
 	</script>
 </head>
 <body>
@@ -226,8 +345,23 @@
 			<br>
 		<br>
 		<br>
-		<button type="button" class="btn-primary" onclick="calculateQuickDASH()">提交</button>
 		<div id="result"></div>
+		<br>
+		<div class="button-container">
+			<input type="reset" value="重設" onclick="resetContent()"> 
+			<button type="button" class="btn-primary" onclick="calculateQuickDASH(event)">提交</button>
+		</div>
+		<br>
+		<div class="centered-text">
+		  <h1>謝謝您完成問卷</h1>
+	  	</div>
 	</form>
+	<div id="popup">
+		<div class="popup-content">
+		  <div class="popup-message"></div>
+		  <button class="popup-button">確定</button>
+		</div>
+	</div>
+	<br><br><br><br><br><br><br><br><br><br>
 </body>
 </html>
